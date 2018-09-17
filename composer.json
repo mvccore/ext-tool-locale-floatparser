@@ -1,0 +1,33 @@
+{
+	"name": "mvccore/ext-tool-locale-floatparser",
+	"type": "library",
+	"description": "MvcCore - Extension - Tool - Locale - FloatParser - Parse float by automatic floating point detection or parse float value by `Intl` extension.",
+	"keywords": [
+		"mvc", 
+		"mvccore", 
+		"framework", 
+		"extension", 
+		"plugin", 
+		"plug-in", 
+		"ext", 
+		"tool", 
+		"locales", 
+		"localization", 
+		"internationalization", 
+		"languages", 
+		"teritories",
+		"setlocale"
+	],
+	"license": ["BSD-3-Clause"],
+	"authors": [{
+		"name": "Tom Flidr",
+		"homepage": "https://github.com/tomFlidr"
+	}],
+	"require": {
+		"php": ">=5.4.0"
+	},
+	"autoload": {
+		"classmap": ["src/"]
+	},
+	"minimum-stability": "stable"
+}
