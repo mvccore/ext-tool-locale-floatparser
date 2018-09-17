@@ -99,15 +99,6 @@ class FloatParser
 	}
 
 	/**
-	 * Get boolean flag about to prefer `Intl` extension parsing  (bundled in PHP from 5.3).
-	 * Default is `FALSE` to prefer parsing by automatic floating point detection.
-	 * @return bool
-	 */
-	public function GetPreferIntlParsing () {
-		return $this->preferIntlParsing;
-	}
-
-	/**
 	 * Set boolean flag about to prefer `Intl` extension parsing  (bundled in PHP from 5.3).
 	 * Default is `FALSE` to prefer parsing by automatic floating point detection.
 	 * @param bool $preferIntlParsing 
@@ -115,6 +106,16 @@ class FloatParser
 	 */
 	public function & SetPreferIntlParsing ($preferIntlParsing = FALSE) {
 		$this->preferIntlParsing = $preferIntlParsing;
+		return $this;
+	}
+
+	/**
+	 * Get boolean flag about to prefer `Intl` extension parsing  (bundled in PHP from 5.3).
+	 * Default is `FALSE` to prefer parsing by automatic floating point detection.
+	 * @return bool
+	 */
+	public function GetPreferIntlParsing () {
+		return $this->preferIntlParsing;
 	}
 
 	/**
@@ -131,6 +132,9 @@ class FloatParser
 	 * user input string automaticly and use PHP `floatval()` to parse the result.
 	 * If parsing by floatval returns `NULL` and `Intl` extension is installed
 	 * but not prefered, try to parse user input by `Intl` extension after it.
+	 * 
+	 * This function do not throw any exception outside. 
+	 * All possible exceptions are catched inside the class.
 	 * 
 	 * @param string $rawInput 
 	 * @return float|NULL
