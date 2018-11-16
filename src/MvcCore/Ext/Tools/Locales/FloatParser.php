@@ -16,7 +16,7 @@ namespace MvcCore\Ext\Tools\Locales;
 /**
  * Responsibility:	try to parse floating point number from raw user input string
  *					by locale conventions by `Intl` extension or by automatic
- *					floating point detection (which looks more successfull).
+ *					floating point detection (which looks more successful).
  *					If there is not possible to get `float` value, return `NULL`.
  */
 class FloatParser
@@ -121,7 +121,7 @@ class FloatParser
 	/**
 	 * Try to parse floating point number from raw user input string
 	 * by locale conventions by `Intl` extension or by automatic
-	 * floating point detection (which looks more successfull).
+	 * floating point detection (which looks more successful).
 	 * If there is not possible to get `float` value, return `NULL`.
 	 * 
 	 * If `Intl` extension installed and if `Intl` extension parsing preferred, 
