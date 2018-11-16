@@ -22,13 +22,13 @@ namespace MvcCore\Ext\Tools\Locales;
 class FloatParser
 {
 	/**
-	 * Language international code, lowercase, example: `"en" | "de"`.
+	 * Language international code, lower case, example: `"en" | "de"`.
 	 * @var string|NULL
 	 */
 	protected $lang				= 'en';
 
 	/**
-	 * Country/locale code, uppercase, example: `"US" | "UK"`.
+	 * Country/locale code, upper case, example: `"US" | "UK"`.
 	 * @var string|NULL
 	 */
 	protected $locale			= 'US';
@@ -42,8 +42,8 @@ class FloatParser
 
 	/**
 	 * Create new instance of floating point number parser.
-	 * @param string $lang Language international code, lowercase, example: `"en" | "de"`.
-	 * @param string $locale Country/locale code, uppercase, example: `"US" | "UK"`.
+	 * @param string $lang Language international code, lower case, example: `"en" | "de"`.
+	 * @param string $locale Country/locale code, upper case, example: `"US" | "UK"`.
 	 * @param bool $preferIntlParsing	Boolean flag to prefer `Intl` extension parsing if `Intl` extension (bundled in PHP from 5.3).
 	 *									Default is `FALSE` to prefer parsing by automatic floating point detection.
 	 */
@@ -53,8 +53,8 @@ class FloatParser
 
 	/**
 	 * Create new instance of floating point number parser.
-	 * @param string $lang Language international code, lowercase, example: `"en" | "de"`.
-	 * @param string $locale Country/locale code, uppercase, example: `"US" | "UK"`.
+	 * @param string $lang Language international code, lower case, example: `"en" | "de"`.
+	 * @param string $locale Country/locale code, upper case, example: `"US" | "UK"`.
 	 * @param bool $preferIntlParsing	Boolean flag to prefer `Intl` extension parsing if `Intl` extension (bundled in PHP from 5.3).
 	 *									Default is `TRUE` to prefer parsing by automatic floating point detection.
 	 */
@@ -65,7 +65,7 @@ class FloatParser
 	}
 
 	/**
-	 * Set language international code, lowercase, example: `"en" | "de"`.
+	 * Set language international code, lower case, example: `"en" | "de"`.
 	 * @var string|NULL
 	 */
 	public function & SetLang ($lang) {
@@ -74,7 +74,7 @@ class FloatParser
 	}
 
 	/**
-	 * Get language international code, lowercase, example: `"en" | "de"`.
+	 * Get language international code, lower case, example: `"en" | "de"`.
 	 * @var string|NULL
 	 */
 	public function GetLang () {
@@ -82,7 +82,7 @@ class FloatParser
 	}
 
 	/**
-	 * Set country/locale code, uppercase, example: `"US" | "UK"`.
+	 * Set country/locale code, upper case, example: `"US" | "UK"`.
 	 * @var string|NULL
 	 */
 	public function & SetLocale ($locale) {
@@ -91,7 +91,7 @@ class FloatParser
 	}
 
 	/**
-	 * Get country/locale code, uppercase, example: `"US" | "UK"`.
+	 * Get country/locale code, upper case, example: `"US" | "UK"`.
 	 * @var string|NULL
 	 */
 	public function GetLocale () {
@@ -124,17 +124,17 @@ class FloatParser
 	 * floating point detection (which looks more successfull).
 	 * If there is not possible to get `float` value, return `NULL`.
 	 * 
-	 * If `Intl` extension installed and if `Intl` extension parsing prefered, 
+	 * If `Intl` extension installed and if `Intl` extension parsing preferred, 
 	 * try to parse by `Intl` extension integer first, than floating point number,
 	 * but always return floating point number type.
 	 * 
-	 * If not prefered or not installed, try to determinate floating point in 
-	 * user input string automaticly and use PHP `floatval()` to parse the result.
+	 * If not preferred or not installed, try to determinate floating point in 
+	 * user input string automatically and use PHP `floatval()` to parse the result.
 	 * If parsing by floatval returns `NULL` and `Intl` extension is installed
-	 * but not prefered, try to parse user input by `Intl` extension after it.
+	 * but not preferred, try to parse user input by `Intl` extension after it.
 	 * 
 	 * This function do not throw any exception outside. 
-	 * All possible exceptions are catched inside the class.
+	 * All possible exceptions are caught inside the class.
 	 * 
 	 * @param string $rawInput 
 	 * @return float|NULL
@@ -240,7 +240,7 @@ class FloatParser
 	}
 
 	/**
-	 * Try to determinate floating point separator if any automaticly
+	 * Try to determinate floating point separator if any 
 	 * and try to parse user input by `floatval()` PHP function.
 	 * @param string $rawInput 
 	 * @return float|NULL
