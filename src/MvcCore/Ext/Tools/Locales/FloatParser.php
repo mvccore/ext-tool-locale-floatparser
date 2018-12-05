@@ -57,6 +57,7 @@ class FloatParser
 	 * @param string $locale Country/locale code, upper case, example: `"US" | "UK"`.
 	 * @param bool $preferIntlParsing	Boolean flag to prefer `Intl` extension parsing if `Intl` extension (bundled in PHP from 5.3).
 	 *									Default is `TRUE` to prefer parsing by automatic floating point detection.
+	 * @return void
 	 */
 	public function __construct ($lang = 'en', $locale = 'US', $preferIntlParsing = FALSE) {
 		$this->lang = $lang;
@@ -66,7 +67,8 @@ class FloatParser
 
 	/**
 	 * Set language international code, lower case, example: `"en" | "de"`.
-	 * @var string|NULL
+	 * @param string|NULL $lang
+	 * @return \MvcCore\Ext\Tools\Locales\FloatParser
 	 */
 	public function & SetLang ($lang) {
 		$this->lang = $lang;
@@ -75,7 +77,7 @@ class FloatParser
 
 	/**
 	 * Get language international code, lower case, example: `"en" | "de"`.
-	 * @var string|NULL
+	 * @return string|NULL
 	 */
 	public function GetLang () {
 		return $this->lang;
@@ -83,7 +85,8 @@ class FloatParser
 
 	/**
 	 * Set country/locale code, upper case, example: `"US" | "UK"`.
-	 * @var string|NULL
+	 * @param string|NULL $locale
+	 * @return \MvcCore\Ext\Tools\Locales\FloatParser
 	 */
 	public function & SetLocale ($locale) {
 		$this->locale = $locale;
@@ -92,7 +95,7 @@ class FloatParser
 
 	/**
 	 * Get country/locale code, upper case, example: `"US" | "UK"`.
-	 * @var string|NULL
+	 * @return string|NULL
 	 */
 	public function GetLocale () {
 		return $this->locale;
@@ -102,7 +105,7 @@ class FloatParser
 	 * Set boolean flag about to prefer `Intl` extension parsing  (bundled in PHP from 5.3).
 	 * Default is `FALSE` to prefer parsing by automatic floating point detection.
 	 * @param bool $preferIntlParsing 
-	 * @return void
+	 * @return \MvcCore\Ext\Tools\Locales\FloatParser
 	 */
 	public function & SetPreferIntlParsing ($preferIntlParsing = FALSE) {
 		$this->preferIntlParsing = $preferIntlParsing;
@@ -165,7 +168,7 @@ class FloatParser
 	 * @return float|NULL
 	 */
 	protected function parseByIntl ($rawInput) {
-		// set default english int parsing behaviour if not configured
+		// set default English int parsing behaviour if not configured
 		$langAndLocale = $this->lang && $this->locale
 			? $this->lang.'_'.$this->locale
 			: 'en_US';

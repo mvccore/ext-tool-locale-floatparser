@@ -14,8 +14,8 @@
 	 */
 	
 	$autoParser = \MvcCore\Ext\Tools\Locales\FloatParser::CreateInstance(
-		'en',	// international language code, lowercase 
-		'US', 	// international country code, uppercase
+		'en',	// international language code, lower case 
+		'US', 	// international country code, upper case
 		FALSE	// FALSE to prefer automatic floating point detection
 	);
 	var_dump($autoParser->Parse('-1,234,567.89'));	// -1234567.89	(float)
@@ -41,7 +41,7 @@
 	/**
 	 * `Intl` parser needs to set up language and locale more precisely
 	 * to user input expectations, which is more error prone in very 
-	 * foreing languages and their locale conventions. 
+	 * foreign languages and their locale conventions. 
 	 * Mostly all languages use floating point character `.` or `,`, but `Intl` 
 	 * library has sometimes not the same values for floating point char in 
 	 * specific locale as operation system has for specific locale, there is 
@@ -49,8 +49,8 @@
 	 * floating point parsing.
 	 */
 	$intlParser = \MvcCore\Ext\Tools\Locales\FloatParser::CreateInstance(
-		'en',	// international language code, lowercase 
-		'US', 	// international country code, uppercase
+		'en',	// international language code, lower case 
+		'US', 	// international country code, upper case
 		TRUE	// TRUE to prefer `Intl` extension parsing
 	);
 	var_dump($intlParser->Parse('-1,234,567.89'));	// -1234567.89	(float)
