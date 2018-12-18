@@ -22,6 +22,13 @@ namespace MvcCore\Ext\Tools\Locales;
 class FloatParser
 {
 	/**
+	 * MvcCore - version:
+	 * Comparison by PHP function `version_compare();`.
+	 * @see http://php.net/manual/en/function.version-compare.php
+	 */
+	const VERSION = '5.0.0-alpha';
+
+	/**
 	 * Language international code, lower case, example: `"en" | "de"`.
 	 * @var string|NULL
 	 */
