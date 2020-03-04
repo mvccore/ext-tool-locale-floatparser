@@ -77,7 +77,7 @@ class FloatParser
 	 * @param string|NULL $lang
 	 * @return \MvcCore\Ext\Tools\Locales\FloatParser
 	 */
-	public function & SetLang ($lang) {
+	public function SetLang ($lang) {
 		$this->lang = $lang;
 		return $this;
 	}
@@ -95,7 +95,7 @@ class FloatParser
 	 * @param string|NULL $locale
 	 * @return \MvcCore\Ext\Tools\Locales\FloatParser
 	 */
-	public function & SetLocale ($locale) {
+	public function SetLocale ($locale) {
 		$this->locale = $locale;
 		return $this;
 	}
@@ -114,7 +114,7 @@ class FloatParser
 	 * @param bool $preferIntlParsing 
 	 * @return \MvcCore\Ext\Tools\Locales\FloatParser
 	 */
-	public function & SetPreferIntlParsing ($preferIntlParsing = FALSE) {
+	public function SetPreferIntlParsing ($preferIntlParsing = FALSE) {
 		$this->preferIntlParsing = $preferIntlParsing;
 		return $this;
 	}
