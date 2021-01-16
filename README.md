@@ -1,14 +1,19 @@
-# MvcCore Extension - Tool - Locale - FloatParser
+# MvcCore - Extension - Tool - Locale - FloatParser
 
 Parse float by automatic floating point detection or parse float value by `Intl` extension.
 
-[![Latest Stable Version](https://img.shields.io/badge/Stable-v4.3.1-brightgreen.svg?style=plastic)](https://github.com/mvccore/ext-tool-locale-parsefloat/releases)
-[![License](https://img.shields.io/badge/Licence-BSD-brightgreen.svg?style=plastic)](https://mvccore.github.io/docs/mvccore/4.0.0/LICENCE.md)
+[![Latest Stable Version](https://img.shields.io/badge/Stable-v5.0.0-brightgreen.svg?style=plastic)](https://github.com/mvccore/ext-tool-locale-floatparser/releases)
+[![License](https://img.shields.io/badge/License-BSD%203-brightgreen.svg?style=plastic)](https://mvccore.github.io/docs/mvccore/5.0.0/LICENCE.md)
 ![PHP Version](https://img.shields.io/badge/PHP->=5.4-brightgreen.svg?style=plastic)
 
-# Usage
+## Installation
+```shell
+composer require mvccore/ext-tool-locale-floatparser
+```
 
-## Non `Intl` Automatic Floating Point Detection
+## Usage
+
+### Non `Intl` Automatic Floating Point Detection
 Non `Intl` parsing with automatic floating point detection
 has better results for unexpected user inputs like:
 `'1.2 3'			=> 1.23			(float)`
@@ -18,7 +23,7 @@ has better results for unexpected user inputs like:
 `'-1 234 567.89'	=> -1234567.89	(float)`
 `'-1 234 567,89'	=> -1234567.89	(float)`
 
-### Example
+#### Example
 ```php
 $autoParser = \MvcCore\Ext\Tools\Locales\FloatParser::CreateInstance(
 	'en',	// international language code, lowercase 
@@ -46,7 +51,7 @@ var_dump($autoParser->Parse([]));				// NULL
 var_dump($autoParser->Parse(new \stdClass));	// NULL
 ```
 
-## `Intl` Parsing
+### `Intl` Parsing
 
 `Intl` parser needs to set up language and locale more precisely
 to user input expectations, which is more error prone in very 
@@ -58,7 +63,7 @@ specific locale as operation system has for specific locale, there is
 a little mess. That's why sometimes there is better to use non `Intl` 
 floating point parsing.
 
-### Example
+#### Example
 ```php
 $intlParser = \MvcCore\Ext\Tools\Locales\FloatParser::CreateInstance(
 	'en',	// international language code, lowercase 
