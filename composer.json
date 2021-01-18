@@ -1,7 +1,7 @@
 {
 	"name": "mvccore/ext-tool-locale-floatparser",
 	"type": "library",
-	"description": "MvcCore - Extension - Tool - Locale - FloatParser - Parse float by automatic floating point detection or parse float value by `Intl` extension.",
+	"description": "MvcCore - Extension - Tool - Locale - FloatParser - parse float by automatic floating point detection or parse float value by `Intl` extension.",
 	"keywords": [
 		"mvc", 
 		"mvccore", 
