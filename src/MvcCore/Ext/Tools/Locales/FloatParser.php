@@ -26,7 +26,7 @@ class FloatParser {
 	 * Comparison by PHP function `version_compare();`.
 	 * @see http://php.net/manual/en/function.version-compare.php
 	 */
-	const VERSION = '5.0.0';
+	const VERSION = '5.0.1';
 
 	/**
 	 * Language international code, lower case, example: `"en" | "de"`.
@@ -146,22 +146,23 @@ class FloatParser {
 	 * This function do not throw any exception outside. 
 	 * All possible exceptions are caught inside the class.
 	 * 
-	 * @param string $rawInput 
-	 * @return float|NULL
+	 * @param  int|float|string $rawInput 
+	 * @return int|float|NULL
 	 */
 	public function Parse ($rawInput) {
-		if (!(is_scalar($rawInput) && !is_bool($rawInput))) 
-			return NULL;
+		if (!(
+			is_scalar($rawInput) && !is_bool($rawInput) // true if $rawInput is int | float | string
+		)) return NULL;
 		if (is_float($rawInput) || is_int($rawInput))
-			return floatval($rawInput);
+			return $rawInput;
 		$intlExtLoaded = extension_loaded('intl');
 		$result = NULL;
 		if ($this->preferIntlParsing && $intlExtLoaded) {
 			$result = $this->parseByIntl($rawInput);
 			if ($result !== NULL) return $result;
-			return $this->parseByFloatVal($rawInput);
+			return $this->parseByPhp($rawInput);
 		} else {
-			$result = $this->parseByFloatVal($rawInput);
+			$result = $this->parseByPhp($rawInput);
 			if ($result !== NULL) return $result;
 			if ($intlExtLoaded) 
 				$result = $this->parseByIntl($rawInput);
@@ -171,8 +172,8 @@ class FloatParser {
 	
 	/**
 	 * Parse user input by `Intl` extension and try to return `int` or `float`.
-	 * @param string $rawInput 
-	 * @return float|NULL
+	 * @param  string $rawInput 
+	 * @return int|float|NULL
 	 */
 	protected function parseByIntl ($rawInput) {
 		// set default English int parsing behaviour if not configured
@@ -181,7 +182,7 @@ class FloatParser {
 			: 'en_US';
 		$intVal = $this->parseIntegerByIntl($rawInput, $langAndLocale);
 		if ($intVal !== NULL) 
-			return floatval($intVal);
+			return $intVal;
 		$floatVal = $this->parseFloatByIntl($rawInput, $langAndLocale);
 		if ($floatVal !== NULL) 
 			return $floatVal;
@@ -190,7 +191,7 @@ class FloatParser {
 	
 	/**
 	 * Parse user input by `Intl` extension and try to return `int`.
-	 * @param string $rawInput 
+	 * @param  string $rawInput 
 	 * @return int|NULL
 	 */
 	protected function parseIntegerByIntl ($rawInput, $langAndLocale) {
@@ -219,7 +220,7 @@ class FloatParser {
 	
 	/**
 	 * Parse user input by `Intl` extension and try to return `float`.
-	 * @param string $rawInput 
+	 * @param  string $rawInput 
 	 * @return float|NULL
 	 */
 	protected function parseFloatByIntl ($rawInput, $langAndLocale) {
@@ -252,10 +253,10 @@ class FloatParser {
 	/**
 	 * Try to determinate floating point separator if any 
 	 * and try to parse user input by `floatval()` PHP function.
-	 * @param string $rawInput 
-	 * @return float|NULL
+	 * @param  string $rawInput 
+	 * @return int|float|NULL
 	 */
-	protected function parseByFloatVal ($rawInput) {
+	protected function parseByPhp ($rawInput) {
 		$result = NULL;
 		$rawInput = trim((string) $rawInput);
 		$valueToParse = preg_replace("#[^Ee0-9,\.\-]#", '', $rawInput);
@@ -289,7 +290,12 @@ class FloatParser {
 				$result = floatval(str_replace(['.',','],['','.'],$valueToParse));
 			}
 		} else if (!$dot && !$comma) {
-			$result = floatval($valueToParse);
+			$intResult = intval($valueToParse);
+			if ($intResult !== NULL) {
+				$result = $intResult;
+			} else {
+				$result = floatval($valueToParse);	
+			}
 		}
 		return $result;
 	}
