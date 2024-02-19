@@ -19,14 +19,14 @@ namespace MvcCore\Ext\Tools\Locales;
  *					floating point detection (which looks more successful).
  *					If there is not possible to get `float` value, return `NULL`.
  */
-class FloatParser {
+class FloatParser implements IFloatParser {
 
 	/**
 	 * MvcCore - version:
 	 * Comparison by PHP function `version_compare();`.
 	 * @see http://php.net/manual/en/function.version-compare.php
 	 */
-	const VERSION = '5.1.0';
+	const VERSION = '5.2.0';
 
 	/**
 	 * Language international code, lower case, example: `"en" | "de"`.
@@ -42,19 +42,19 @@ class FloatParser {
 
 	/**
 	 * Boolean flag to prefer `Intl` extension parsing if `Intl` extension (bundled in PHP from 5.3).
-	 * Default is `FALSE` to prefer parsing by automatic floating point detection.
+	 * Default is `TRUE` to prefer parsing by automatic floating point detection.
 	 * @var bool
 	 */
-	protected $preferIntlParsing = FALSE;
+	protected $preferIntlParsing = TRUE;
 
 	/**
 	 * Create new instance of floating point number parser.
 	 * @param string $lang Language international code, lower case, example: `"en" | "de"`.
 	 * @param string $locale Country/locale code, upper case, example: `"US" | "UK"`.
 	 * @param bool $preferIntlParsing	Boolean flag to prefer `Intl` extension parsing if `Intl` extension (bundled in PHP from 5.3).
-	 *									Default is `FALSE` to prefer parsing by automatic floating point detection.
+	 *									Default is `TRUE` to prefer parsing by automatic floating point detection.
 	 */
-	public static function CreateInstance ($lang = 'en', $locale = 'US', $preferIntlParsing = FALSE) {
+	public static function CreateInstance ($lang = 'en', $locale = 'US', $preferIntlParsing = TRUE) {
 		return new static($lang, $locale, $preferIntlParsing);
 	}
 
@@ -66,7 +66,7 @@ class FloatParser {
 	 *									Default is `TRUE` to prefer parsing by automatic floating point detection.
 	 * @return void
 	 */
-	public function __construct ($lang = 'en', $locale = 'US', $preferIntlParsing = FALSE) {
+	public function __construct ($lang = 'en', $locale = 'US', $preferIntlParsing = TRUE) {
 		$this->lang = $lang;
 		$this->locale = $locale;
 		$this->preferIntlParsing = $preferIntlParsing;
@@ -110,18 +110,18 @@ class FloatParser {
 
 	/**
 	 * Set boolean flag about to prefer `Intl` extension parsing  (bundled in PHP from 5.3).
-	 * Default is `FALSE` to prefer parsing by automatic floating point detection.
+	 * Default is `TRUE` to prefer parsing by automatic floating point detection.
 	 * @param bool $preferIntlParsing 
 	 * @return \MvcCore\Ext\Tools\Locales\FloatParser
 	 */
-	public function SetPreferIntlParsing ($preferIntlParsing = FALSE) {
+	public function SetPreferIntlParsing ($preferIntlParsing = TRUE) {
 		$this->preferIntlParsing = $preferIntlParsing;
 		return $this;
 	}
 
 	/**
 	 * Get boolean flag about to prefer `Intl` extension parsing  (bundled in PHP from 5.3).
-	 * Default is `FALSE` to prefer parsing by automatic floating point detection.
+	 * Default is `TRUE` to prefer parsing by automatic floating point detection.
 	 * @return bool
 	 */
 	public function GetPreferIntlParsing () {
@@ -214,7 +214,8 @@ class FloatParser {
 		$groupingSep = $formatter->getSymbol(\NumberFormatter::GROUPING_SEPARATOR_SYMBOL);
 		$valueFiltered = str_replace($groupingSep, '', $rawInput);
 		$valueFiltered = str_replace($decimalSep, '.', $valueFiltered);
-		if (strval($parsedInt) !== $valueFiltered) return NULL;
+		if (strval($parsedInt) !== $valueFiltered) 
+			return NULL;
 		return $parsedInt;
 	}
 	
@@ -237,7 +238,7 @@ class FloatParser {
 		$groupingSep = $formatter->getSymbol(\NumberFormatter::GROUPING_SEPARATOR_SYMBOL);
 		$valueFiltered = str_replace($groupingSep, '', $rawInput);
 		$valueFiltered = str_replace($decimalSep, '.', $valueFiltered);
-		if ($parsedScient !== NULL && $valueFiltered == strval($parsedScient)) 
+		if ($parsedScient !== NULL && $valueFiltered === strval($parsedScient)) 
 			return $parsedScient;
 		$formatter = new \NumberFormatter($langAndLocale, \NumberFormatter::DECIMAL);
 		try {
