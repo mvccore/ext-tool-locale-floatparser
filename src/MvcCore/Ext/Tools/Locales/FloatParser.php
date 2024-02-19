@@ -48,7 +48,7 @@ class FloatParser implements IFloatParser {
 	protected $preferIntlParsing = TRUE;
 
 	/**
-	 * Create new instance of floating point number parser.
+	 * @inheritDoc
 	 * @param string $lang Language international code, lower case, example: `"en" | "de"`.
 	 * @param string $locale Country/locale code, upper case, example: `"US" | "UK"`.
 	 * @param bool $preferIntlParsing	Boolean flag to prefer `Intl` extension parsing if `Intl` extension (bundled in PHP from 5.3).
@@ -73,7 +73,7 @@ class FloatParser implements IFloatParser {
 	}
 
 	/**
-	 * Set language international code, lower case, example: `"en" | "de"`.
+	 * @inheritDoc
 	 * @param string|NULL $lang
 	 * @return \MvcCore\Ext\Tools\Locales\FloatParser
 	 */
@@ -83,7 +83,7 @@ class FloatParser implements IFloatParser {
 	}
 
 	/**
-	 * Get language international code, lower case, example: `"en" | "de"`.
+	 * @inheritDoc
 	 * @return string|NULL
 	 */
 	public function GetLang () {
@@ -91,7 +91,7 @@ class FloatParser implements IFloatParser {
 	}
 
 	/**
-	 * Set country/locale code, upper case, example: `"US" | "UK"`.
+	 * @inheritDoc
 	 * @param string|NULL $locale
 	 * @return \MvcCore\Ext\Tools\Locales\FloatParser
 	 */
@@ -101,7 +101,7 @@ class FloatParser implements IFloatParser {
 	}
 
 	/**
-	 * Get country/locale code, upper case, example: `"US" | "UK"`.
+	 * @inheritDoc
 	 * @return string|NULL
 	 */
 	public function GetLocale () {
@@ -109,8 +109,7 @@ class FloatParser implements IFloatParser {
 	}
 
 	/**
-	 * Set boolean flag about to prefer `Intl` extension parsing  (bundled in PHP from 5.3).
-	 * Default is `TRUE` to prefer parsing by automatic floating point detection.
+	 * @inheritDoc
 	 * @param bool $preferIntlParsing 
 	 * @return \MvcCore\Ext\Tools\Locales\FloatParser
 	 */
@@ -120,8 +119,7 @@ class FloatParser implements IFloatParser {
 	}
 
 	/**
-	 * Get boolean flag about to prefer `Intl` extension parsing  (bundled in PHP from 5.3).
-	 * Default is `TRUE` to prefer parsing by automatic floating point detection.
+	 * @inheritDoc
 	 * @return bool
 	 */
 	public function GetPreferIntlParsing () {
@@ -129,23 +127,7 @@ class FloatParser implements IFloatParser {
 	}
 
 	/**
-	 * Try to parse floating point number from raw user input string
-	 * by locale conventions by `Intl` extension or by automatic
-	 * floating point detection (which looks more successful).
-	 * If there is not possible to get `float` value, return `NULL`.
-	 * 
-	 * If `Intl` extension installed and if `Intl` extension parsing preferred, 
-	 * try to parse by `Intl` extension integer first, than floating point number,
-	 * but always return floating point number type.
-	 * 
-	 * If not preferred or not installed, try to determinate floating point in 
-	 * user input string automatically and use PHP `floatval()` to parse the result.
-	 * If parsing by floatval returns `NULL` and `Intl` extension is installed
-	 * but not preferred, try to parse user input by `Intl` extension after it.
-	 * 
-	 * This function do not throw any exception outside. 
-	 * All possible exceptions are caught inside the class.
-	 * 
+	 * @inheritDoc
 	 * @param  int|float|string $rawInput 
 	 * @return int|float|NULL
 	 */
